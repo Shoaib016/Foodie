@@ -50,7 +50,7 @@ export default function Navbar(props) {
                             <div>
 
                                 <div className="btn bg-white text-success mx-2 " onClick={loadCart}>
-                                    <Badge color="secondary" badgeContent={items.length} >
+                                    <Badge color="secondary" overlap="rectangular" badgeContent={items.length} >
                                         <ShoppingCartIcon />
                                     </Badge>
                                     Cart

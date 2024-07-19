@@ -1,6 +1,8 @@
 const express = require('express')
 const User = require('../models/User')
 const Order = require('../models/Orders')
+let foodDb = require('../models/Food');
+let foodCatDb = require('../models/FoodCategories');
 const router = express.Router()
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs')
@@ -8,7 +10,6 @@ var jwt = require('jsonwebtoken');
 const axios = require('axios')
 const fetch = require('../middleware/fetchdetails');
 const jwtSecret = "HaHa"
-// var foodItems= require('../index').foodData;
 // require("../index")
 //Creating a user and storing data to MongoDB Atlas, No Login Requiered
 router.post('/createuser', [
@@ -135,7 +136,12 @@ router.post('/foodData', async (req, res) => {
         // console.log( JSON.stringify(global.foodData))
         // const userId = req.user.id;
         // await database.listCollections({name:"food_items"}).find({});
-        res.send([global.foodData, global.foodCategory])
+        // res.send([global.foodData, global.foodCategory])
+        let foodItems = await foodDb.find()
+        let foodCat = await foodCatDb.find()
+        console.log("fooddata", foodItems)
+
+        res.send([foodItems, foodCat])
     } catch (error) {
         console.error(error.message)
         res.send("Server Error")

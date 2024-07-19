@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 // const mongoDbClient = require("mongodb").MongoClient
-const mongoURI = 'mongodb://<!#@!#@>:"!@!@"@merncluster-shard-00-00.d1d4z.mongodb.net:27017,merncluster-shard-00-01.d1d4z.mongodb.net:27017,merncluster-shard-00-02.d1d4z.mongodb.net:27017/Customer?ssl=true&replicaSet=atlas-eusy5p-shard-0&authSource=admin&retryWrites=true&w=majority' // Customer change url to your db you created in atlas
+const mongoURI = 'mongodb+srv://foody:shoaib@foody.l91ohmf.mongodb.net/?retryWrites=true&w=majority&appName=foody'
 // mongodb://<username>:<password>@merncluster-shard-00-00.d1d4z.mongodb.net:27017,merncluster-shard-00-01.d1d4z.mongodb.net:27017,merncluster-shard-00-02.d1d4z.mongodb.net:27017/?ssl=true&replicaSet=atlas-eusy5p-shard-0&authSource=admin&retryWrites=true&w=majority
 module.exports = function (callback) {
     mongoose.connect(mongoURI, { useNewUrlParser: true }, async (err, result) => {
@@ -10,17 +10,21 @@ module.exports = function (callback) {
             // var database =
             console.log("connected to mongo")
             const foodCollection = await mongoose.connection.db.collection("food_items");
+            console.log("food",foodCollection)
             foodCollection.find({}).toArray(async function (err, data) {
+                
                 const categoryCollection = await mongoose.connection.db.collection("Categories");
+                console.log(categoryCollection)
                 categoryCollection.find({}).toArray(async function (err, Catdata) {
+                    console.log("====",data,Catdata)
                     callback(err, data, Catdata);
-
                 })
             });
             // listCollections({name: 'food_items'}).toArray(function (err, database) {
             // });
             //     module.exports.Collection = database;
             // });
+            module.exports.foodData = foodCollection
         }
     })
 };

@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.cart-container td{
+  color: white;
+}
+
+.cart-container:hover td{
+  color: white !important;
+}
+
+.cart-container td:hover{
+  color: white !important;
+}

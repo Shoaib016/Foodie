@@ -18,6 +18,7 @@ export default function Home() {
 
     });
     response = await response.json()
+    console.log(response)
     // console.log(response[1][0].CategoryName)
     setFoodItems(response[0])
     setFoodCat(response[1])
@@ -36,20 +37,20 @@ export default function Home() {
         <div id="carouselExampleFade" className="carousel slide carousel-fade " data-bs-ride="carousel">
 
           <div className="carousel-inner " id='carousel'>
-            <div class=" carousel-caption  " style={{ zIndex: "9" }}>
+            <div className=" carousel-caption  " style={{ zIndex: "9" }}>
               <div className=" d-flex justify-content-center">  {/* justify-content-center, copy this <form> from navbar for search box */}
                 <input className="form-control me-2 w-75 bg-white text-dark" type="search" placeholder="Search in here..." aria-label="Search" value={search} onChange={(e) => { setSearch(e.target.value) }} />
                 <button className="btn text-white bg-danger" onClick={() => { setSearch('') }}>X</button>
               </div>
             </div>
             <div className="carousel-item active" >
-              <img src="https://source.unsplash.com/random/900x700/?burger" className="d-block w-100  " style={{ filter: "brightness(30%)" }} alt="..." />
+              <img src="https://t4.ftcdn.net/jpg/01/69/56/95/240_F_169569546_zaLG8x4tyIu3SDn1jYWXThVpMjCEbn8Q.jpg" width={900} height={700} className="d-block w-100  " style={{ filter: "brightness(30%)" }} alt="..." />
             </div>
             <div className="carousel-item">
-              <img src="https://source.unsplash.com/random/900x700/?pastry" className="d-block w-100 " style={{ filter: "brightness(30%)" }} alt="..." />
+              <img src="https://t4.ftcdn.net/jpg/08/38/77/91/240_F_838779114_dC5ehzy7Wo8NsajhpS9rtHAmYCN2BumP.jpg" className="d-block w-100 " style={{ filter: "brightness(30%)" }} alt="..." />
             </div>
             <div className="carousel-item">
-              <img src="https://source.unsplash.com/random/900x700/?barbeque" className="d-block w-100 " style={{ filter: "brightness(30%)" }} alt="..." />
+              <img src="https://t4.ftcdn.net/jpg/02/07/62/43/240_F_207624351_C3gFBXxFQGurLJmgbTEfnTRD62zT7xuA.jpg" className="d-block w-100 " style={{ filter: "brightness(30%)" }} alt="..." />
             </div>
           </div>
           <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
