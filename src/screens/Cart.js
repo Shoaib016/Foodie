@@ -1,9 +1,14 @@
 import React from 'react'
 import Delete from '@material-ui/icons/Delete'
 import { useCart, useDispatchCart } from '../components/ContextReducer';
-export default function Cart() {
+import { useNavigate } from 'react-router-dom';
+const BASE_URL = process.env.REACT_APP_BASE_URL
+console.log(BASE_URL)
+
+export default function Cart({ onClose }) {
   let data = useCart();
   let dispatch = useDispatchCart();
+  const navigate = useNavigate()
   if (data.length === 0) {
     return (
       <div>
@@ -11,17 +16,10 @@ export default function Cart() {
       </div>
     )
   }
-  // const handleRemove = (index)=>{
-  //   console.log(index)
-  //   dispatch({type:"REMOVE",index:index})
-  // }
 
   const handleCheckOut = async () => {
     let userEmail = localStorage.getItem("userEmail");
-    // console.log(data,localStorage.getItem("userEmail"),new Date())
-    let response = await fetch("http://localhost:5000/api/auth/orderData", {
-      // credentials: 'include',
-      // Origin:"http://localhost:3000/login",
+    let response = await fetch(BASE_URL + "/api/auth/orderData", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -32,17 +30,16 @@ export default function Cart() {
         order_date: new Date().toDateString()
       })
     });
-    console.log("JSON RESPONSE:::::", response.status)
     if (response.status === 200) {
       dispatch({ type: "DROP" })
+      onClose()
+      navigate('myorder')
     }
   }
 
   let totalPrice = data.reduce((total, food) => total + food.price, 0)
   return (
     <div>
-
-      {console.log(data)}
       <div className='cart-container container m-auto mt-5 table-responsive  table-responsive-sm table-responsive-md' >
         <table className='table table-hover '>
           <thead className=' text-success fs-4'>
@@ -72,9 +69,6 @@ export default function Cart() {
           <button className='btn bg-success mt-5 ' onClick={handleCheckOut} > Check Out </button>
         </div>
       </div>
-
-
-
     </div>
   )
 }

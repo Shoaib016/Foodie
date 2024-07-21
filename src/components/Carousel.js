@@ -14,8 +14,8 @@ export default function Carousel() {
                         </form>
                     </div>
                     <div className="carousel-item active" >
-                    <img src="https://t4.ftcdn.net/jpg/01/69/56/95/240_F_169569546_zaLG8x4tyIu3SDn1jYWXThVpMjCEbn8Q.jpg" className="d-block w-100 " style={{ filter: "brightness(30%)" }} alt="..." />
-                        </div>
+                        <img src="https://t4.ftcdn.net/jpg/01/69/56/95/240_F_169569546_zaLG8x4tyIu3SDn1jYWXThVpMjCEbn8Q.jpg" className="d-block w-100 " style={{ filter: "brightness(30%)" }} alt="..." />
+                    </div>
                     <div className="carousel-item">
                         <img src="https://t4.ftcdn.net/jpg/08/38/77/91/240_F_838779114_dC5ehzy7Wo8NsajhpS9rtHAmYCN2BumP.jpg" className="d-block w-100 " style={{ filter: "brightness(30%)" }} alt="..." />
                     </div>

@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../components/Card'
-// import Carousel from '../components/Carousel'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
+const BASE_URL = process.env.REACT_APP_BASE_URL
+
 export default function Home() {
   const [foodCat, setFoodCat] = useState([])
   const [foodItems, setFoodItems] = useState([])
   const [search, setSearch] = useState('')
   const loadFoodItems = async () => {
-    let response = await fetch("http://localhost:5000/api/auth/foodData", {
-      // credentials: 'include',
-      // Origin:"http://localhost:3000/login",
+    let response = await fetch(BASE_URL + "/api/auth/foodData", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -19,7 +18,6 @@ export default function Home() {
     });
     response = await response.json()
     console.log(response)
-    // console.log(response[1][0].CategoryName)
     setFoodItems(response[0])
     setFoodCat(response[1])
   }
@@ -68,7 +66,6 @@ export default function Home() {
           foodCat !== []
             ? foodCat.map((data) => {
               return (
-                // justify-content-center
                 <div className='row mb-3'>
                   <div key={data.id} className='fs-3 m-3'>
                     {data.CategoryName}

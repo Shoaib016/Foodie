@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import Navbar from '../components/Navbar';
 import { useNavigate, Link } from 'react-router-dom'
+const BASE_URL = process.env.REACT_APP_BASE_URL
+
 export default function Login() {
   const [credentials, setCredentials] = useState({ email: "", password: "" })
   let navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/api/auth/login", {
-      // credentials: 'include',
-      // Origin:"http://localhost:3000/login",
+    const response = await fetch(BASE_URL + "/api/auth/login", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -20,7 +20,6 @@ export default function Login() {
     const json = await response.json()
     console.log(json);
     if (json.success) {
-      //save the auth toke to local storage and redirect
       localStorage.setItem('userEmail', credentials.email)
       localStorage.setItem('token', json.authToken)
       navigate("/");
@@ -36,7 +35,7 @@ export default function Login() {
   }
 
   return (
-    <div style={{backgroundImage: 'url("https://images.pexels.com/photos/326278/pexels-photo-326278.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")', height: '100vh', backgroundSize: 'cover' }}>
+    <div style={{ backgroundImage: 'url("https://images.pexels.com/photos/326278/pexels-photo-326278.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")', height: '100vh', backgroundSize: 'cover' }}>
       <div>
         <Navbar />
       </div>
@@ -59,8 +58,3 @@ export default function Login() {
     </div>
   )
 }
-
-
-// , 'Accept': 'application/json',
-//         'Access-Control-Allow-Origin': 'http://localhost:3000/login', 'Access-Control-Allow-Credentials': 'true',
-//         "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",'Access-Control-Allow-Methods': 'PUT, POST, GET, DELETE, OPTIONS'

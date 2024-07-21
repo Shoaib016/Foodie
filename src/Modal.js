@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom'
+import Cart from './screens/Cart'
 
 const MODAL_STYLES = {
   position: 'fixed',
@@ -22,14 +23,14 @@ const OVERLAY_STYLES = {
   zIndex: 1000
 }
 
-export default function Modal({ children, onClose }) {
+export default function Modal({  onClose }) {
 
   return ReactDom.createPortal(
     <>
       <div style={OVERLAY_STYLES} />
       <div style={MODAL_STYLES}>
         <button className='btn bg-danger fs-4' style={{ marginLeft: "90%", marginTop: "-35px" }} onClick={onClose}> X </button>
-        {children}
+        <Cart onClose={onClose}/>
       </div>
     </>,
     document.getElementById('cart-root')

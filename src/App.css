@@ -37,7 +37,11 @@
   }
 }
 
-.cart-container td{
+.cart-container td, .cart-container th{
+  color: white;
+}
+
+.cart-container h1{
   color: white;
 }
 

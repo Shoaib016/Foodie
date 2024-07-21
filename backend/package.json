@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js"
   },
-  "author": "Arshdeep Singh",
+  "author": "Shoaib Hussain",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.7.2",
